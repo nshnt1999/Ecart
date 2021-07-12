@@ -1,0 +1,54 @@
+<%- include('../layout/admin_header'); -%>
+
+<br><br>
+
+<a href="/admin/products/add-product/" class="btn btn-primary"><h5>Add a new Product</h5></a>
+<br><br><br>
+<% if(count==0){ %>
+    <h2 class="text-center">There are no Products</h2>
+
+<% }else{ %>
+    <table class="table table-striped">
+        <thead class="table-secondary">
+            <tr class="home">
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Product Image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(res of result){ %>
+                <tr>
+                    <td> <%= res.title %> </td>
+                    <td><%= res.price %></td>
+                    <td><%= res.category %></td>
+                    <td>
+                        <img src="../../public/product_images/<%=res._id%>/<%=res.image%>" alt="Not loading" style="width: 100px;">
+                    </td>
+                    <td><a href="/admin/products/edit-product/<%= res._id %>">Edit</a></td>
+                    <td><a href="/admin/products/delete-product/<%= res._id %>">Delete</a></td>
+                </tr>
+            <% } %>
+            
+        </tbody>
+            
+    
+    
+    
+    </table>
+    
+
+<% } %>
+<br><br>
+
+
+
+
+
+
+
+
+<%- include('../layout/admin_footer'); -%>

@@ -1,0 +1,24 @@
+<%- include('../layout/admin_header'); -%>
+
+<h2 class="page-title">Add a Category</h2>
+<a href="/admin/categories/" class="btn btn-primary">Back to all categories</a>
+<br><br><br>
+
+<h5 class="alert-danger" style="display: inline-block;"><%=errors%></h5>
+
+
+<form method="POST" action="/admin/categories/add-category">
+    
+        <div class="form-group">
+            <label for=""><h4>Title</h4></label>
+            <input type="text" class="form-control" name="title" value="<%= title%>" placeholder="Add title">
+        </div>
+    
+        <br>
+        <button class="btn btn-primary">Submit</button>    
+    
+    <br><br><br>
+</form>
+
+
+<%- include('../layout/admin_footer'); -%>

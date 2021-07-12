@@ -1,0 +1,33 @@
+<%- include('../layout/header'); -%>
+
+<div class="col-md-10 p-2">
+    <div class="container">
+    <center><h4><%= title %></h4> </center>
+    <div class="row continer p-3">
+        <% if(count==0){%>
+            <div>
+                <h4>No product is avaliabel presently</h4>
+            </div>
+        <%}else{%>
+        <% for(p of products){%>
+        <div class="col-md-3 m-4 p-3">
+            <img src="../../public/product_images/<%=p._id%>/<%=p.image%>" alt="no_image" style="width: 150px;height: 100px; ">
+            <br><br>
+            <p class="mb-0"><h5><%=p.title%></h5></p>
+            <p class="mb-0"><h6>Rs.<%=p.price%></h6></p>
+            <p><a href="/products/<%=p.category%>/<%=p.slug%>">View Details</a></p>
+            
+        </div>
+        <%}%>
+        <%}%>
+      
+    </div>
+    </div>
+
+</div>
+</div>
+
+
+
+
+<%- include('../layout/footer'); -%>

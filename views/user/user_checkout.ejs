@@ -1,0 +1,95 @@
+<%- include('../layout/header'); -%>
+<div class="col-md-10">
+    <div class="container">
+        <h1><%=title%></h1>
+    </div>
+    <% if(!carts||carts.length==0){%>
+        <div class="container">
+            <br><br>
+          <center><h2 style="color: blueviolet;">Cart is Empty</h2></center>  
+        </div>
+    <%}else{%>
+    <div class="col-md-8 col-sm-10">
+        <table class="table table-striped" style="margin-left: 10%;">
+            <thead>
+                <th>Image</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+                <th>SubTotal</th>
+            </thead>
+            <tbody>
+                <% var total = 0 %>
+                <%for(ct of carts){%>
+                    <tr>
+                        <td><img src="../../public/<%=ct.image%>" alt="no_image" style="width: 100px; height: 100px;"></td>
+                        <td><%=ct.title%></td>
+                        <td><%=ct.qty%></td>
+                        <td><%=ct.price%></td>
+                        <% let sub = parseFloat(ct.qty*ct.price) %>
+                        <% total+=sub%>
+                        <td>
+                            <a href="/cart/update/<%=ct.title%>?action=add">+</a>
+                            <a href="/cart/update/<%=ct.title%>?action=remove">-</a>
+                            <a href="/cart/update/<%=ct.title%>?action=clear">Clear</a>
+                        </td>
+                        <td>Rs <%=sub%></td>
+                    </tr>
+                <%}%>
+                <tr>
+                    <td colspan="6" align="right"><b>Total: Rs <%= parseFloat(total).toFixed(2) %></b></td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="right">
+                        <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+    <%}%>
+</div>
+
+</div>
+
+<div class="container m-5">
+    <input type="hidden" name="cmd" value="_ext-enter">
+    <form class="pp" action="https://www.paypal.com/us/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="nshnt1999@gmail.com">
+        <input type="hidden" name="item_name" value="YOUR ITEMS">
+        <input type="hidden" name="currency_code" value="INR">
+        <input type="hidden" name="amount" value="<%=total%>">
+        <input  type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">    
+    </form>
+
+</div>
+    
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+   
+   $('clearcart').on('click', function () {
+       if (!confirm('Confirm clear cart'))
+           return false;
+   });
+
+   $('a.buynow').on('click', function (e) {
+        e.preventDefault();
+        
+        $.get('/cart/buynow', function() {
+            $('form.pp input[type=image]').click();
+            $('.ajaxbg').show();
+        });
+    });
+
+
+})
+</script>
+
+<%- include('../layout/footer'); -%>

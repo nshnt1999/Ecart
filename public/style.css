@@ -1,0 +1,44 @@
+.heading {
+    background-color: cyan;
+    height:100px;   
+    display:flex;
+    justify-content: center;
+}
+
+.heading h1{
+    padding: 1%;
+
+}
+
+.main{
+    margin:3%;
+    padding: 3%;
+    height: 40vh;
+    background-color:#42EADDFF
+}
+
+label {
+    font-size: 20px;
+}
+
+.frm-btn{
+    margin:3%;
+    padding: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover,a:active{
+    background-color: blueviolet;
+    color: white;
+}

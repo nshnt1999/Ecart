@@ -1,0 +1,36 @@
+<%- include('../layout/admin_header'); -%>
+
+<br><br>
+
+<a href="/admin/categories/add-category/" class="btn btn-primary"><h6>Add a new Category</h6></a>
+
+<br><br>
+<table class="table table-striped">
+    <thead class="table-secondary">
+        <tr class="home">
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(res of result){ %>
+            <tr id="id_<%= res.id%>" class="<%= res.slug %>">
+                <td> <%= res.title %> </td>
+                <td><a href="/admin/categories/edit-category/<%= res._id %>">Edit</a></td>
+                <% if(res.slug=="hello"){ %>
+                <td> </td>
+                <% }else{ %>
+                <td><a href="/admin/categories/delete-category/<%= res._id %>">Delete</a></td>
+                <% } %>
+            </tr>
+        <% } %>
+        
+    </tbody>
+        
+
+
+
+</table>
+
+<%- include('../layout/admin_footer'); -%>
